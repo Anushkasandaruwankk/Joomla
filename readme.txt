@@ -1,1 +1,1 @@
-this is joomla.
+This is joomla.
