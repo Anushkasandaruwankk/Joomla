@@ -1,29 +1,9 @@
 <?php
-/**
- * @version     1.1
- * @package     mod_bootstrapnav
- * @copyright   Copyright (C) 2014. All rights reserved.
- * @license     http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
- * @author      Brad Traversy <support@bootstrapjoomla.com> - http://www.bootstrapjoomla.com
- */
-//No Direct Access
+
 defined('_JEXEC') or die;
 
-/**
- * Helper for mod_bootstrapnav
- *
- * @package     Joomla.Site
- * @subpackage  mod_bootstrapnav
- * @since       1.5
- */
 class ModBootstrapnavHelper
 {
-    /**
-     * Get a list of the menu items.
-     *
-     * @param  JRegistry   $params  The module options.
-     * @return  array
-     */
     public static function getList(&$params)
     {
         $app  = JFactory::getApplication();
@@ -118,13 +98,7 @@ class ModBootstrapnavHelper
         }
         return $items;
     }
-    
-    /**
-     * Get base menu item.
-     * @param   JRegistry  $params  The module options.
-     * @return   object
-     *
-     */
+
     public static function getBase(&$params)
     {
         if ($params->get('base')) {
@@ -139,13 +113,7 @@ class ModBootstrapnavHelper
         
         return $base;
     }
-    
-    /**
-     * Get active menu item.
-     * @param   JRegistry  $params  The module options.
-     * @return  object
-     *
-     */
+
     public static function getActive(&$params)
     {
         $menu = JFactory::getApplication()->getMenu();
@@ -157,42 +125,11 @@ class ModBootstrapnavHelper
     
     
 }
-/**
- * @version     1.1
- * @package     mod_bootstrapnav
- * @copyright   Copyright (C) 2015. All rights reserved.
- * @license     http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
- * @author      Michael Jones <mikegrahamjones@gmail.com>
- */
+
 class ModBootStrapMenuGenerator
 {
-    
-    
-    /**
-     * Track individual menu items; by the $item->id
-     * @type array (KVP)
-     * @author Michael Jones <mikegrahamjones@gmail.com>
-     */
     private $menu_items_created = false;
-    
-    
-    /**
-     * Debug tracked items; as the menu is generated
-     * @type boolean
-     * @author Michael Jones <mikegrahamjones@gmail.com>
-     */
     private $debug_created_menus = false;
-    
-    
-    /**
-     * Allow for complete recursion on the BootStrap Menu
-     * @param array $list
-     * @param string $path
-     * @param integer $active_id
-     * @param boolean $show_subnav
-     * @return  html
-     * @author Michael Jones <mikegrahamjones@gmail.com>
-     */
     public function Build_BootStrap_Menu($item_list, $path, $active_id, $show_subnav = TRUE, $bootstrap_menu = array())
     {
         $this->menu_items_created = array();
@@ -233,17 +170,7 @@ class ModBootStrapMenuGenerator
         return $rendered_bootstrap_menu;
         
     }
-    
-    /**
-     * Create a <li></li> menu item
-     * @param object stdClass $item
-     * @param string $item_class
-     * @param string $link_class
-     * @param string $link_title
-     * @param string $link_data
-     * @return  html
-     * @author Michael Jones <mikegrahamjones@gmail.com>
-     */
+
     protected function Create_BootStrap_Menu_Item($item, $item_class = '', $link_class = '', $link_title = '', $link_data = '')
     {
         
@@ -265,18 +192,7 @@ class ModBootStrapMenuGenerator
         return "";
         
     }
-    
-    /**
-     * Create a <a></a> menu item; inherts Create_BootStrap_Menu_Item
-     * @param object $link_content
-     * @param string $link_href
-     * @param string $link_class
-     * @param string $link_id
-     * @param string $link_title
-     * @param string $link_data
-     * @return  html
-     * @author Michael Jones <mikegrahamjones@gmail.com>
-     */
+
     protected function Create_BootStrap_Menu_Link($link_content = '', $link_href = '', $link_class = '', $link_id = '', $link_title = '', $link_data = '')
     {
         
@@ -290,13 +206,7 @@ class ModBootStrapMenuGenerator
         return $joomla_link_rendered;
         
     }
-    
-    /**
-     * Track a Item; so it does not get re-created
-     * @param object stdClass $item
-     * @return  html
-     * @author Michael Jones <mikegrahamjones@gmail.com>
-     */
+
     protected function Track_BootStrap_Menu_Item($item)
     {
         
@@ -305,14 +215,7 @@ class ModBootStrapMenuGenerator
         return true;
         
     }
-    
-    /**
-     * Track a Item; so it does not get re-created
-     * @param object stdClass $item
-     * @param string $scan_event
-     * @return  html
-     * @author Michael Jones <mikegrahamjones@gmail.com>
-     */
+
     protected function Is_Joomla_Item_New($item, $scan_event = '')
     {
         
@@ -336,18 +239,7 @@ class ModBootStrapMenuGenerator
         
         return true;
     }
-    
-    
-    /**
-     * Allow for Sub Items; to also have other Sub Items
-     * @param stdClass Joomla/Registry $item
-     * @param string $item_class
-     * @param array $list
-     * @param boolean $show_subnav
-     * @return  html
-     * http://bootsnipp.com/snippets/featured/multi-level-navbar-menu
-     * @author Michael Jones <mikegrahamjones@gmail.com>
-     */
+
     protected function Build_BootStrap_MenuItem($item, $item_class, $list, $show_subnav = TRUE, $subnav_class = NULL)
     {
         
